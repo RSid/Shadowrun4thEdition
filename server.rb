@@ -33,15 +33,20 @@ def authenticate!
 end
 
 get '/' do
-
-  @users_characters = User.find(session[:user_id]).characters
-
+  if signed_in?
+    @users_characters = User.find(session[:user_id]).characters
+  end
 
   erb :index
 end
 
-get '/create' do
+get '/characters/:character_id' do
+  @character = Character.find(params[:character_id])
 
+  erb :character
+end
+
+get '/create' do
 
   erb :create
 end

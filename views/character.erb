@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Character</title>
+</head>
+<body>
+
+<h1><a href ="/"> Shadowrun Character-keeper </a></h1>
+
+<ul>
+<li><%= @character.name %></li>
+<li><%= @character.metatype.name %></li>
+<ul class = "stats">
+  <li><%= "Body: #{@character.body}" %>
+  <li><%= "Agility: #{@character.agility}" %>
+  <li><%= "Strength: #{@character.strength}" %>
+  <li><%= "Reaction: #{@character.reaction}" %>
+  <li><%= "Charisma: #{ @character.charisma}" %>
+  <li><%= "Intuition: #{ @character.intuition}" %>
+  <li><%= "Logic: #{@character.logic}" %>
+  <li><%= "Willpower: #{@character.willpower}" %>
+  <li><%= "Edge: #{@character.edge}" %>
+</ul>
+<li><%= "Initiative passes: #{@character.initiative_passes}" %></li>
+<li><%= "Nuyen: #{@character.nuyen}" %></li>
+<li><%= "Essence: #{@character.essence}" %></li>
+</ul>
+
+</body>
+</html>

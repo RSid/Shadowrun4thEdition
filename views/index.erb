@@ -20,7 +20,7 @@
 
         <ul class="char-list">
           <% @users_characters.each do |character| %>
-          <li><%= character.name %></li>
+          <li><a href= <%= "/characters/#{character.id}"%> ><%= character.name %></a></li>
           <% end %>
         </ul>
 
