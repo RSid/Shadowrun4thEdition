@@ -85,6 +85,12 @@ post '/create' do
   redirect '/'
 end
 
+post '/delete/:character_id' do
+  Character.destroy(params[:character_id])
+
+  redirect "/"
+end
+
 
 ##############
 #OAUTH routes

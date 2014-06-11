@@ -27,5 +27,11 @@
 <li><%= "Essence: #{@character.essence}" %></li>
 </ul>
 
+<form action= <%= "/delete/#{@character.id}" %> method="post">
+  <label for="delete">Delete this character? This action cannot be undone. </label>
+  <input id="delete" type="submit"  value="Delete"/>
+</form>
+
+
 </body>
 </html>
