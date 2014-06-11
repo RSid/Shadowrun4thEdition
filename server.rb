@@ -34,19 +34,48 @@ end
 
 get '/' do
 
-  @characters = Character.all
+  @users_characters = User.find(session[:user_id]).characters
+
 
   erb :index
 end
 
 get '/create' do
 
-  @characters = Character.all
 
   erb :create
 end
 
 post '/create' do
+
+  name = params["name"]
+  metatype_id = Metatype.find_by(name: params["metatype"]).id
+  body = params["body"]
+  agility = params["agility"]
+  reaction = params["reaction"]
+  strength = params["strength"]
+  charisma = params["charisma"]
+  intuition = params["intuition"]
+  logic = params["logic"]
+  willpower = params["willpower"]
+  edge = params["edge"]
+  nuyen = params["nuyen"]
+  essence = params["essence"]
+  magic = params["magic"]
+  initiative_passes = params["initiative-passes"]
+  bio = params["bio"]
+  user_id = session[:user_id]
+
+  if signed_in?
+    new_character = Character.create(name: name,user_id: user_id, metatype_id: metatype_id,
+      body: body, agility: agility, reaction: reaction, strength: strength, charisma: charisma, intuition: intuition, logic: logic, willpower: willpower,edge: edge,
+      nuyen: nuyen, essence: essence, magic: magic, initiative_passes: initiative_passes,bio: bio)
+
+
+    flash[:notice] = "You have successfully created a new Character!"
+  else
+    authenticate!
+  end
 
   redirect '/'
 end
