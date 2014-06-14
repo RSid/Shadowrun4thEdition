@@ -6,6 +6,8 @@ class CharacterSkill < ActiveRecord::Base
   validates :character_id, presence: true
   validates :skill_id, presence: true
   validates :rating, presence: true
+  validates :specialization, presence: true
+
 
 
 

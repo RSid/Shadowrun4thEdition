@@ -42,6 +42,7 @@ end
 
 get '/characters/:character_id' do
   @character = Character.find(params[:character_id])
+  @character_skills = @character.character_skills
 
   erb :character
 end
@@ -89,6 +90,28 @@ post '/delete/:character_id' do
   Character.destroy(params[:character_id])
 
   redirect "/"
+end
+
+post '/addskill/:character_id' do
+  character_id = params[:character_id]
+  skill_name = params['skillname']
+  skill_rating = params['skillrating']
+  skill_specialization = params['skillspecialization']
+  skill_group = params['skillgroup']
+  skill_default = params['skilldefault']
+
+  if Skill.find_by(name: skill_name) != nil
+    skill_id = Skill.find_by(name: skill_name).id
+    binding.pry
+    #add catcher to keep from adding redundant  charskills
+    CharacterSkill.create(character_id: character_id,skill_id: skill_id,rating: skill_rating, specialization: skill_specialization)
+  else
+    Skill.create(name: skill_name,default_skill: skill_default,skill_group: skill_group)
+    CharacterSkill.create(character_id: character_id,skill_id: skill_id,rating: skill_rating, specialization: skill_specialization)
+    binding.pry
+  end
+
+  redirect "/characters/#{character_id}"
 end
 
 

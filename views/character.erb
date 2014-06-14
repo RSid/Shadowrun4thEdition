@@ -27,6 +27,30 @@
 <li><%= "Essence: #{@character.essence}" %></li>
 </ul>
 
+<h3>Skills: </h3>
+<ul>
+  <% @character_skills.each do |characterskill| %>
+    <li><%= "#{Skill.find(characterskill.skill_id).name}, Rating: #{characterskill.rating}, Specialization: #{characterskill.specialization}" %></li>
+  <% end %>
+</ul>
+
+
+
+<p>Add a skill:</p>
+  <form action= <%= "/addskill/#{@character.id}" %> method="post">
+    <label for="skillname">Name: </label>
+    <input type="text" name="skillname" id="skillname" />
+    <label for="skillrating">Rating: </label>
+    <input type="text" name="skillrating" id="skillrating" />
+    <label for="skillspecialization">Specialization: </label>
+    <input type="text" name="skillspecialization" id="skillspecialization" />
+    <label for="skillgroup">Skill group: </label>
+    <input type="text" name="skillgroup" id="skillgroup" />
+    <label for="skilldefault">Default: </label>
+    <input type="text" name="skilldefault" id="skilldefault" />
+    <input type="submit"  value="Submit"/>
+  </form>
+
 <form action= <%= "/delete/#{@character.id}" %> method="post">
   <label for="delete">Delete this character? This action cannot be undone. </label>
   <input id="delete" type="submit"  value="Delete"/>
