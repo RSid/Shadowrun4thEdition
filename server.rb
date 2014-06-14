@@ -114,6 +114,13 @@ post '/addskill/:character_id' do
   redirect "/characters/#{character_id}"
 end
 
+post '/delete/:character_id/:characterskill_id' do
+  binding.pry
+  CharacterSkill.destroy(params[:characterskill_id])
+
+  redirect "/characters/#{params[:character_id]}"
+end
+
 
 ##############
 #OAUTH routes
