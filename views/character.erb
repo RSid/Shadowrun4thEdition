@@ -32,10 +32,13 @@
 <h3>Skills: </h3>
 <ul>
   <% @character_skills.each do |characterskill| %>
+
     <li><%= "#{Skill.find(characterskill.skill_id).name}, Rating: #{characterskill.rating}, Specialization: #{characterskill.specialization}" %></li>
-      <form action= <%= "/delete/#{@character.id}/#{characterskill.id}" %> method="post">
-      <input id="delete" type="submit"  value="Delete"/>
+
+      <form action= <%= "/deleteskill/#{@character.id}/#{characterskill.id}" %> method="post">
+      <input id="delete-skill" type="submit"  value="Delete"/>
     </form>
+
   <% end %>
 </ul>
 
@@ -59,7 +62,13 @@
 <h3>Qualities: </h3>
 <ul>
   <% @character_qualities.each do |characterquality| %>
-    <li><%= "#{Quality.find(characterquality.quality_id).name},#{Quality.find(characterquality.quality_id).description} Rating: #{characterquality.affect_rating}" %></li>
+
+    <li><%= "#{Quality.find(characterquality.quality_id).name}: #{Quality.find(characterquality.quality_id).description} Rating: #{characterquality.affect_rating} #{Quality.find(characterquality.quality_id).affected_stat} " %></li>
+
+      <form action= <%= "/deletequality/#{@character.id}/#{characterquality.id}" %> method="post">
+      <input id="delete-quality" type="submit"  value="Delete"/>
+      </form>
+
   <% end %>
 </ul>
 

@@ -48,7 +48,6 @@ end
 get '/characters/:character_id' do
   @character = Character.find(params[:character_id])
   @character_skills = @character.character_skills
-  binding.pry
   @character_qualities = @character.characterqualities
 
   erb :character
@@ -120,7 +119,7 @@ post '/addskill/:character_id' do
   redirect "/characters/#{character_id}"
 end
 
-post '/delete/:character_id/:characterskill_id' do
+post '/deleteskill/:character_id/:characterskill_id' do
   binding.pry
   CharacterSkill.destroy(params[:characterskill_id])
 
@@ -148,6 +147,14 @@ post '/addquality/:character_id' do
   end
 
   redirect "/characters/#{character_id}"
+end
+
+post '/deletequality/:character_id/:characterquality_id' do
+
+  binding.pry
+  Characterquality.destroy(params[:characterquality_id])
+
+  redirect "/characters/#{params[:character_id]}"
 end
 
 
