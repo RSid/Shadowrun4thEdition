@@ -23,6 +23,12 @@ ActiveRecord::Schema.define(version: 20140611174528) do
     t.integer "rating",         null: false
   end
 
+  create_table "characterqualities", force: true do |t|
+    t.integer "character_id",  null: false
+    t.integer "quality_id",    null: false
+    t.string  "affect_rating"
+  end
+
   create_table "characters", force: true do |t|
     t.string  "name",              null: false
     t.integer "user_id",           null: false
@@ -47,6 +53,12 @@ ActiveRecord::Schema.define(version: 20140611174528) do
   create_table "metatypes", force: true do |t|
     t.string "name",            null: false
     t.string "special_ability"
+  end
+
+  create_table "qualities", force: true do |t|
+    t.string "name",          null: false
+    t.string "description"
+    t.string "affected_stat"
   end
 
   create_table "skills", force: true do |t|

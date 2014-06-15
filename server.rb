@@ -1,9 +1,13 @@
+
 require 'sinatra'
 require 'sinatra/activerecord'
 require 'sinatra/flash'
 require 'omniauth'
 require 'omniauth-github'
 require 'shotgun'
+require 'pry'
+require 'pg'
+require 'rake'
 
 
 require_relative 'config/application.rb'
@@ -33,6 +37,7 @@ def authenticate!
 end
 
 get '/' do
+
   if signed_in?
     @users_characters = User.find(session[:user_id]).characters
   end
@@ -43,7 +48,7 @@ end
 get '/characters/:character_id' do
   @character = Character.find(params[:character_id])
   @character_skills = @character.character_skills
-
+  binding.pry
   erb :character
 end
 
@@ -106,9 +111,10 @@ post '/addskill/:character_id' do
     #add catcher to keep from adding redundant  charskills
     CharacterSkill.create(character_id: character_id,skill_id: skill_id,rating: skill_rating, specialization: skill_specialization)
   else
+    binding.pry
     Skill.create(name: skill_name,default_skill: skill_default,skill_group: skill_group)
     CharacterSkill.create(character_id: character_id,skill_id: skill_id,rating: skill_rating, specialization: skill_specialization)
-    binding.pry
+
   end
 
   redirect "/characters/#{character_id}"

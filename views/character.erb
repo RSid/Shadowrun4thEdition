@@ -28,13 +28,14 @@
 <li><%= "Essence: #{@character.essence}" %></li>
 </ul>
 
+
 <h3>Skills: </h3>
 <ul>
   <% @character_skills.each do |characterskill| %>
-    <li><%= "#{Skill.find(characterskill.skill_id).name}, Rating: #{characterskill.rating}, Specialization: #{characterskill.specialization}" %>
+    <li><%= "#{Skill.find(characterskill.skill_id).name}, Rating: #{characterskill.rating}, Specialization: #{characterskill.specialization}" %></li>
       <form action= <%= "/delete/#{@character.id}/#{characterskill.id}" %> method="post">
       <input id="delete" type="submit"  value="Delete"/>
-    </form> </li>
+    </form>
   <% end %>
 </ul>
 
