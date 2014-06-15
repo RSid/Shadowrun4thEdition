@@ -56,6 +56,31 @@
     <input type="submit"  value="Submit"/>
   </form>
 
+<h3>Qualities: </h3>
+<ul>
+  <% @character_qualities.each do |characterquality| %>
+    <li><%= "#{Quality.find(characterquality.quality_id).name},#{Quality.find(characterquality.quality_id).description} Rating: #{characterquality.affect_rating}" %></li>
+  <% end %>
+</ul>
+
+
+<p>Add a quality:</p>
+  <form action= <%= "/addquality/#{@character.id}" %> method="post">
+    <label for="qname">Name: </label>
+    <input type="text" name="qname" id="qname" />
+
+    <label for="qdescription">Description: </label>
+    <input type="text" name="qdescription" id="qdescription" />
+
+    <label for="qaffect">Affected stat, if any: </label>
+    <input type="text" name="qaffect" id="qaffect" />
+
+    <label for="qrating">Affect rating, if any: </label>
+    <input type="text" name="qrating" id="qrating" />
+
+    <input type="submit"  value="Submit"/>
+  </form>
+
 <form action= <%= "/delete/#{@character.id}" %> method="post">
   <label for="delete">Delete this character? This action cannot be undone. </label>
   <input id="delete" type="submit"  value="Delete"/>

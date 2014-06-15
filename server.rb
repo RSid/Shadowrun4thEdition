@@ -49,6 +49,8 @@ get '/characters/:character_id' do
   @character = Character.find(params[:character_id])
   @character_skills = @character.character_skills
   binding.pry
+  @character_qualities = @character.characterqualities
+
   erb :character
 end
 
@@ -107,14 +109,12 @@ post '/addskill/:character_id' do
 
   if Skill.find_by(name: skill_name) != nil
     skill_id = Skill.find_by(name: skill_name).id
-    binding.pry
     #add catcher to keep from adding redundant  charskills
     CharacterSkill.create(character_id: character_id,skill_id: skill_id,rating: skill_rating, specialization: skill_specialization)
   else
-    binding.pry
     Skill.create(name: skill_name,default_skill: skill_default,skill_group: skill_group)
+    skill_id = Skill.find_by(name: skill_name).id
     CharacterSkill.create(character_id: character_id,skill_id: skill_id,rating: skill_rating, specialization: skill_specialization)
-
   end
 
   redirect "/characters/#{character_id}"
@@ -125,6 +125,29 @@ post '/delete/:character_id/:characterskill_id' do
   CharacterSkill.destroy(params[:characterskill_id])
 
   redirect "/characters/#{params[:character_id]}"
+end
+
+post '/addquality/:character_id' do
+  character_id = params[:character_id]
+  quality_name = params['qname']
+  quality_description = params['qdescription']
+  quality_affect = params['qaffect']
+  quality_rating = params['qrating']
+
+  if Quality.find_by(name: quality_name) != nil
+    quality_id = Quality.find_by(name: quality_name).id
+    binding.pry
+    #add catcher to keep from adding redundant  charskills
+    Characterquality.create(character_id: character_id,quality_id: quality_id,affect_rating: quality_rating)
+  else
+    Quality.create(name: quality_name,description: quality_description,affected_stat: quality_affect)
+    quality_id = Quality.find_by(name: quality_name).id
+    binding.pry
+    Characterquality.create(character_id: character_id,quality_id: quality_id,affect_rating: quality_rating)
+
+  end
+
+  redirect "/characters/#{character_id}"
 end
 
 

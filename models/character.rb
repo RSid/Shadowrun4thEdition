@@ -2,6 +2,9 @@ class Character < ActiveRecord::Base
   belongs_to :user
   has_many :character_skills
   has_many :skills, through: :character_skills
+  has_many :characterqualities
+  has_many :qualities, through: :characterqualities
+
   belongs_to :metatype
 
   validates :name, presence: true
