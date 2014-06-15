@@ -4,6 +4,7 @@ class Character < ActiveRecord::Base
   has_many :skills, through: :character_skills
   has_many :characterqualities
   has_many :qualities, through: :characterqualities
+  has_many :connections, dependent: :destroy
 
   belongs_to :metatype
 

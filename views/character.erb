@@ -90,10 +90,42 @@
     <input type="submit"  value="Submit"/>
   </form>
 
+  <h3>Connections: </h3>
+
+<ul>
+  <% @connections.each do |connection|%>
+
+  <li><%= "#{connection.name}: #{connection.description} Loyalty: #{connection.loyalty}/ Connection: #{connection.connection}" %></li>
+
+    <form action= <%= "/deleteconnection/#{@character.id}/#{connection.id}" %> method="post">
+      <input id="delete-connection" type="submit"  value="Delete"/>
+    </form>
+
+  <% end %>
+</ul>
+
+<p>Add a connection:</p>
+  <form action= <%= "/addconnection/#{@character.id}" %> method="post">
+    <label for="connectionname">Name: </label>
+    <input type="text" name="connectionname" id="connectionname" />
+
+    <label for="connectiondescription">Description: </label>
+    <input type="text" name="connectiondescription" id="connectiondescription" />
+
+    <label for="connectionloyalty">Loyalty: </label>
+    <input type="text" name="connectionloyalty" id="connectionloyalty" />
+
+    <label for="connection">Connection: </label>
+    <input type="text" name="connection" id="connection" />
+
+    <input type="submit"  value="Submit"/>
+  </form>
+
 <form action= <%= "/delete/#{@character.id}" %> method="post">
   <label for="delete">Delete this character? This action cannot be undone. </label>
   <input id="delete" type="submit"  value="Delete"/>
 </form>
+
 
 
 </body>

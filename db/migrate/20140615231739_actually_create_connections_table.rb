@@ -1,4 +1,4 @@
-class CreateCharacterConnections < ActiveRecord::Migration
+class ActuallyCreateConnectionsTable < ActiveRecord::Migration
   def change
     create_table :connections do |table|
       table.string :name, null: false

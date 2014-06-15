@@ -49,6 +49,7 @@ get '/characters/:character_id' do
   @character = Character.find(params[:character_id])
   @character_skills = @character.character_skills
   @character_qualities = @character.characterqualities
+  @connections = @character.connections
 
   erb :character
 end
@@ -156,6 +157,27 @@ post '/deletequality/:character_id/:characterquality_id' do
 
   redirect "/characters/#{params[:character_id]}"
 end
+
+post '/addconnection/:character_id' do
+
+  character_id = params[:character_id]
+  connection_name = params['connectionname']
+  connection_description = params['connectiondescription']
+  connection_loyalty = params['connectionloyalty']
+  connection_connection = params['connection']
+
+  Connection.create(character_id: character_id, name: connection_name, description: connection_description,loyalty: connection_loyalty,connection: connection_connection)
+
+  redirect "/characters/#{character_id}"
+end
+
+post '/deleteconnection/:character_id/:connection_id' do
+
+  Connection.destroy(params[:connection_id])
+
+  redirect "/characters/#{params[:character_id]}"
+end
+
 
 
 ##############
