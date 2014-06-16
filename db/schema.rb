@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140615232638) do
+ActiveRecord::Schema.define(version: 20140616000543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,5 +86,19 @@ ActiveRecord::Schema.define(version: 20140615232638) do
   end
 
   add_index "users", ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
+
+  create_table "weapons", force: true do |t|
+    t.string  "name",           null: false
+    t.string  "description"
+    t.integer "damage",         null: false
+    t.string  "damage_type",    null: false
+    t.boolean "melee",          null: false
+    t.integer "concealability"
+    t.integer "armor_piercing"
+    t.string  "mode"
+    t.string  "recoil"
+    t.string  "ammo"
+    t.string  "legality"
+  end
 
 end
