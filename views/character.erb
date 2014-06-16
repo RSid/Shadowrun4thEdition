@@ -9,10 +9,23 @@
 
 <h1><a href ="/"> Shadowrun Character-keeper </a></h1>
 
-<ul>
-<li><%= @character.name %></li>
-<li><%= @character.metatype.name %></li>
-<ul class = "stats">
+<div id = "character-name"><%= @character.name %></div>
+
+<ul class="char-nav">
+  <li><a href = "#skills">Skills</a></li>
+  <li> | </li>
+  <li><a href = "#qualities">Qualities</a></li>
+  <li> | </li>
+  <li><a href = "#gear">Gear</a></li>
+  <li> | </li>
+  <li><a href = "#connections">Connections</a></li>
+</ul>
+
+<div class = "content">
+
+<ul class = "character-details">
+<li><%= "Metatype: #{@character.metatype.name}" %></li>
+<ul class = "barscilwe">
   <li><%= "Body: #{@character.body}" %>
   <li><%= "Agility: #{@character.agility}" %>
   <li><%= "Strength: #{@character.strength}" %>
@@ -23,13 +36,17 @@
   <li><%= "Willpower: #{@character.willpower}" %>
   <li><%= "Edge: #{@character.edge}" %>
 </ul>
+<li><%= "Physical damage track: #{8 + (@character.body.to_f/2).ceil}" %></li>
+<li><%= "Stun damage track: #{8 + (@character.willpower.to_f/2).ceil}" %></li>
+<li><%= "Initiative: #{@character.reaction + @character.intuition}"%></li>
 <li><%= "Initiative passes: #{@character.initiative_passes}" %></li>
 <li><%= "Nuyen: #{@character.nuyen}" %></li>
 <li><%= "Essence: #{@character.essence}" %></li>
+<li><%= "Magic/Resonance: #{@character.magic}" %></li>
 </ul>
 
 
-<h3>Skills: </h3>
+<h3><a name="skills">Skills: </h3>
 <ul>
   <% @character_skills.each do |characterskill| %>
 
@@ -42,24 +59,24 @@
   <% end %>
 </ul>
 
-
-
+<div class = "editing-characters">
 <p>Add a skill:</p>
-  <form action= <%= "/addskill/#{@character.id}" %> method="post">
-    <label for="skillname">Name: </label>
-    <input type="text" name="skillname" id="skillname" />
-    <label for="skillrating">Rating: </label>
-    <input type="text" name="skillrating" id="skillrating" />
-    <label for="skillspecialization">Specialization: </label>
-    <input type="text" name="skillspecialization" id="skillspecialization" />
-    <label for="skillgroup">Skill group: </label>
-    <input type="text" name="skillgroup" id="skillgroup" />
-    <label for="skilldefault">Default: </label>
-    <input type="text" name="skilldefault" id="skilldefault" />
-    <input type="submit"  value="Submit"/>
-  </form>
+    <form action= <%= "/addskill/#{@character.id}" %> method="post">
+      <label for="skillname">Name: </label>
+      <input type="text" name="skillname" id="skillname" />
+      <label for="skillrating">Rating: </label>
+      <input type="text" name="skillrating" id="skillrating" />
+      <label for="skillspecialization">Specialization: </label>
+      <input type="text" name="skillspecialization" id="skillspecialization" />
+      <label for="skillgroup">Skill group: </label>
+      <input type="text" name="skillgroup" id="skillgroup" />
+      <label for="skilldefault">Default: </label>
+      <input type="text" name="skilldefault" id="skilldefault" />
+      <input type="submit"  value="Submit"/>
+    </form>
+  </div>
 
-<h3>Qualities: </h3>
+<h3><a name = "qualities">Qualities: </h3>
 <ul>
   <% @character_qualities.each do |characterquality| %>
 
@@ -72,30 +89,31 @@
   <% end %>
 </ul>
 
+<div class = "editing-characters">
+  <p>Add a quality:</p>
+    <form action= <%= "/addquality/#{@character.id}" %> method="post">
+      <label for="qname">Name: </label>
+      <input type="text" name="qname" id="qname" />
 
-<p>Add a quality:</p>
-  <form action= <%= "/addquality/#{@character.id}" %> method="post">
-    <label for="qname">Name: </label>
-    <input type="text" name="qname" id="qname" />
+      <label for="qdescription">Description: </label>
+      <input type="text" name="qdescription" id="qdescription" />
 
-    <label for="qdescription">Description: </label>
-    <input type="text" name="qdescription" id="qdescription" />
+      <label for="qaffect">Affected stat, if any: </label>
+      <input type="text" name="qaffect" id="qaffect" />
 
-    <label for="qaffect">Affected stat, if any: </label>
-    <input type="text" name="qaffect" id="qaffect" />
+      <label for="qrating">Affect rating, if any: </label>
+      <input type="text" name="qrating" id="qrating" />
 
-    <label for="qrating">Affect rating, if any: </label>
-    <input type="text" name="qrating" id="qrating" />
+      <input type="submit"  value="Submit"/>
+    </form>
+</div>
 
-    <input type="submit"  value="Submit"/>
-  </form>
-
-<h3>Gear: </h3>
+<h3><a name = "gear">Gear: </h3>
 
 <p>Coming Soon.</p>
 
 
-  <h3>Connections: </h3>
+  <h3><a name = "connections">Connections: </h3>
 
 <ul>
   <% @connections.each do |connection|%>
@@ -109,29 +127,33 @@
   <% end %>
 </ul>
 
-<p>Add a connection:</p>
-  <form action= <%= "/addconnection/#{@character.id}" %> method="post">
-    <label for="connectionname">Name: </label>
-    <input type="text" name="connectionname" id="connectionname" />
+<div class = "editing-characters">
+  <p>Add a connection:</p>
+    <form action= <%= "/addconnection/#{@character.id}" %> method="post">
+      <label for="connectionname">Name: </label>
+      <input type="text" name="connectionname" id="connectionname" />
 
-    <label for="connectiondescription">Description: </label>
-    <input type="text" name="connectiondescription" id="connectiondescription" />
+      <label for="connectiondescription">Description: </label>
+      <input type="text" name="connectiondescription" id="connectiondescription" />
 
-    <label for="connectionloyalty">Loyalty: </label>
-    <input type="text" name="connectionloyalty" id="connectionloyalty" />
+      <label for="connectionloyalty">Loyalty: </label>
+      <input type="text" name="connectionloyalty" id="connectionloyalty" />
 
-    <label for="connection">Connection: </label>
-    <input type="text" name="connection" id="connection" />
+      <label for="connection">Connection: </label>
+      <input type="text" name="connection" id="connection" />
 
-    <input type="submit"  value="Submit"/>
+      <input type="submit"  value="Submit"/>
+    </form>
+</div>
+
+<div id="character-deletion">
+  <form action= <%= "/delete/#{@character.id}" %> method="post">
+    <label for="delete">Delete this character? This action cannot be undone. </label>
+    <input id="delete" type="submit"  value="Delete"/>
   </form>
+</div>
 
-<form action= <%= "/delete/#{@character.id}" %> method="post">
-  <label for="delete">Delete this character? This action cannot be undone. </label>
-  <input id="delete" type="submit"  value="Delete"/>
-</form>
-
-
+</div>
 
 </body>
 </html>

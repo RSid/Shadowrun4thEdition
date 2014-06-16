@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140616000543) do
+ActiveRecord::Schema.define(version: 20140616011633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,11 @@ ActiveRecord::Schema.define(version: 20140616000543) do
     t.integer "skill_id",       null: false
     t.string  "specialization"
     t.integer "rating",         null: false
+  end
+
+  create_table "character_weapons", force: true do |t|
+    t.string  "character_id", null: false
+    t.integer "rating"
   end
 
   create_table "characterqualities", force: true do |t|
@@ -47,7 +52,7 @@ ActiveRecord::Schema.define(version: 20140616000543) do
     t.integer "essence",           null: false
     t.integer "magic"
     t.integer "initiative_passes", null: false
-    t.string  "bio"
+    t.text    "bio"
   end
 
   create_table "connections", force: true do |t|

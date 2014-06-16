@@ -1,6 +1,6 @@
 class Weapon < ActiveRecord::Base
   belongs_to :character_weapons
-  belongs_to :character, through: :character_weapons
+
 
 
   validates :name, presence: true

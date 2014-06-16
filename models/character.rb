@@ -5,6 +5,9 @@ class Character < ActiveRecord::Base
   has_many :characterqualities
   has_many :qualities, through: :characterqualities
   has_many :connections, dependent: :destroy
+  has_many :character_weapons
+  has_many :weapons, through: :character_weapons
+
 
   belongs_to :metatype
 
