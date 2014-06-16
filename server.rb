@@ -121,7 +121,6 @@ post '/addskill/:character_id' do
 end
 
 post '/deleteskill/:character_id/:characterskill_id' do
-  binding.pry
   CharacterSkill.destroy(params[:characterskill_id])
 
   redirect "/characters/#{params[:character_id]}"
@@ -136,13 +135,12 @@ post '/addquality/:character_id' do
 
   if Quality.find_by(name: quality_name) != nil
     quality_id = Quality.find_by(name: quality_name).id
-    binding.pry
     #add catcher to keep from adding redundant  charskills
     Characterquality.create(character_id: character_id,quality_id: quality_id,affect_rating: quality_rating)
   else
     Quality.create(name: quality_name,description: quality_description,affected_stat: quality_affect)
     quality_id = Quality.find_by(name: quality_name).id
-    binding.pry
+
     Characterquality.create(character_id: character_id,quality_id: quality_id,affect_rating: quality_rating)
 
   end
@@ -152,7 +150,6 @@ end
 
 post '/deletequality/:character_id/:characterquality_id' do
 
-  binding.pry
   Characterquality.destroy(params[:characterquality_id])
 
   redirect "/characters/#{params[:character_id]}"

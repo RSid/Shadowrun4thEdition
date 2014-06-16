@@ -25,6 +25,7 @@
 
 <ul class = "character-details">
 <li><%= "Metatype: #{@character.metatype.name}" %></li>
+<li><%= "Metatype special: #{@character.metatype.special_ability}" %></li>
 <ul class = "barscilwe">
   <li><%= "Body: #{@character.body}" %>
   <li><%= "Agility: #{@character.agility}" %>
@@ -53,7 +54,7 @@
     <li><%= "#{Skill.find(characterskill.skill_id).name}, Rating: #{characterskill.rating}, Specialization: #{characterskill.specialization}" %></li>
 
       <form action= <%= "/deleteskill/#{@character.id}/#{characterskill.id}" %> method="post">
-      <input id="delete-skill" type="submit"  value="Delete"/>
+      <input class="delete-button" type="submit"  value="Delete"/>
     </form>
 
   <% end %>
@@ -72,7 +73,7 @@
       <input type="text" name="skillgroup" id="skillgroup" />
       <label for="skilldefault">Default: </label>
       <input type="text" name="skilldefault" id="skilldefault" />
-      <input type="submit"  value="Submit"/>
+      <input class="submit-button" type="submit"  value="Submit"/>
     </form>
   </div>
 
@@ -83,7 +84,7 @@
     <li><%= "#{Quality.find(characterquality.quality_id).name}: #{Quality.find(characterquality.quality_id).description} Rating: #{characterquality.affect_rating} #{Quality.find(characterquality.quality_id).affected_stat} " %></li>
 
       <form action= <%= "/deletequality/#{@character.id}/#{characterquality.id}" %> method="post">
-      <input id="delete-quality" type="submit"  value="Delete"/>
+      <input  class="delete-button" type="submit"  value="Delete"/>
       </form>
 
   <% end %>
@@ -104,7 +105,7 @@
       <label for="qrating">Affect rating, if any: </label>
       <input type="text" name="qrating" id="qrating" />
 
-      <input type="submit"  value="Submit"/>
+      <input  class="submit-button" type="submit"  value="Submit"/>
     </form>
 </div>
 
@@ -121,7 +122,7 @@
   <li><%= "#{connection.name}: #{connection.description} Loyalty: #{connection.loyalty}/ Connection: #{connection.connection}" %></li>
 
     <form action= <%= "/deleteconnection/#{@character.id}/#{connection.id}" %> method="post">
-      <input id="delete-connection" type="submit"  value="Delete"/>
+      <input class="delete-button" type="submit"  value="Delete"/>
     </form>
 
   <% end %>
@@ -142,14 +143,14 @@
       <label for="connection">Connection: </label>
       <input type="text" name="connection" id="connection" />
 
-      <input type="submit"  value="Submit"/>
+      <input class="submit-button" type="submit"  value="Submit"/>
     </form>
 </div>
 
 <div id="character-deletion">
   <form action= <%= "/delete/#{@character.id}" %> method="post">
     <label for="delete">Delete this character? This action cannot be undone. </label>
-    <input id="delete" type="submit"  value="Delete"/>
+    <input class="delete-button" type="submit"  value="Delete"/>
   </form>
 </div>
 

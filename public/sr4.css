@@ -146,3 +146,16 @@ form {
   padding-top: 50px;
   margin: 10px;
 }
+
+.submit-button {
+background-color: gray;
+border-color: black;
+color: white;
+
+}
+
+.delete-button {
+  background-color: #D63333;
+  border-color: black;
+  color: white;
+}
