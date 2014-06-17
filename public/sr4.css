@@ -159,3 +159,8 @@ color: white;
   border-color: black;
   color: white;
 }
+
+select {
+  border-color: black;
+  font: FrizQuadrata;
+}
