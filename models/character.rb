@@ -27,52 +27,30 @@ class Character < ActiveRecord::Base
   validates  :essence, presence: true
   validates :initiative_passes, presence: true
 
-  def add_skill(skill_name)
-    #check and see if skill's in db, if not add it and add it to character_skills db
-    #instantiate a new characterskill instance associated with this character
-    #will want to wait to convert to OO further until ActiveRecord
-
-  end
-
-  def roll(skill, modifiers = 0)
+  def roll(skill, modifiers = 0, edge_used = false)
     results = []
     dice = skill + modifiers
     dice.times { results << rand(6) }
     results
   end
 
-  def delete_skill(skill_name)
-
-  end
 
   def change_skill_rating(skill)
+    #may be better placed in characterskills
+  end
+
+  def change_stats
 
   end
 
-  def add_quality(quality_name)
-    #check and see if quality's in db, if not add it and add it to character_qualities db
-    #instantiate a new characterquality instance associated with this character
-  end
-
-  def delete_quality(quality_name)
-
-  end
 
   def adjust_stats_based_on_quality(quality)
-
-  end
-
-  def add_gear(gear_name)
-    #check and see if gear's in db, if not add it and add it to character_gear db
-    #instantiate a new charactergear instance associated with this character
-  end
-
-  def delete_gear(gear_name)
-
+    #complicated, might be several methods, might be a couple methods for common ones and a separate,
+    #manual way to decrement stats/rolls
   end
 
   def change_nuyen(amount)
-    #lets you adjust a character's nuyen up or down
+    self.nuyen = self.nuyen + amount
   end
 
   def use_edge
