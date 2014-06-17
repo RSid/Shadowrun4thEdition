@@ -53,8 +53,8 @@
 
     <li><%= "#{Skill.find(characterskill.skill_id).name}, Rating: #{characterskill.rating}, Specialization: #{characterskill.specialization}" %></li>
 
-      <form action= <%= "/deleteskill/#{@character.id}/#{characterskill.id}" %> method="post">
-      <input class="delete-button" type="submit"  value="Delete"/>
+    <form action= <%= "/deleteskill/#{@character.id}/#{characterskill.id}" %> method="post">
+    <input class="delete-button" type="submit"  value="Delete"/>
     </form>
 
   <% end %>
@@ -76,6 +76,16 @@
       <input class="submit-button" type="submit"  value="Submit"/>
     </form>
   </div>
+
+<form>
+Home of the future deletion dropdown menu:
+  <select>
+    <% @character_skills.each do |characterskill| %>
+      <option><%= Skill.find(characterskill.skill_id).name%></option>
+    <% end %>
+  </select>
+
+</form>
 
 <h3><a name = "qualities">Qualities: </h3>
 <ul>

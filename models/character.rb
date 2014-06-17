@@ -1,11 +1,11 @@
 class Character < ActiveRecord::Base
   belongs_to :user
-  has_many :character_skills
+  has_many :character_skills, dependent: :destroy
   has_many :skills, through: :character_skills
-  has_many :characterqualities
+  has_many :characterqualities, dependent: :destroy
   has_many :qualities, through: :characterqualities
   has_many :connections, dependent: :destroy
-  has_many :character_weapons
+  has_many :character_weapons, dependent: :destroy
   has_many :weapons, through: :character_weapons
 
 
@@ -32,6 +32,13 @@ class Character < ActiveRecord::Base
     #instantiate a new characterskill instance associated with this character
     #will want to wait to convert to OO further until ActiveRecord
 
+  end
+
+  def roll(skill, modifiers = 0)
+    results = []
+    dice = skill + modifiers
+    dice.times { results << rand(6) }
+    results
   end
 
   def delete_skill(skill_name)
