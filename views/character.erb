@@ -89,10 +89,6 @@ Skill select:
 
     <li><%= "#{Quality.find(characterquality.quality_id).name}: #{Quality.find(characterquality.quality_id).description} Rating: #{characterquality.affect_rating} #{Quality.find(characterquality.quality_id).affected_stat} " %></li>
 
-      <form action= <%= "/deletequality/#{@character.id}/#{characterquality.id}" %> method="post">
-      <input  class="delete-button" type="submit"  value="Delete"/>
-      </form>
-
   <% end %>
 </ul>
 
@@ -115,7 +111,7 @@ Skill select:
     </form>
 </div>
 
-<form action= <%= "/delete-skill/#{@character.id}" %> method = 'post' >
+<form action= <%= "/delete-quality/#{@character.id}" %> method = 'post' >
 Quality select:
   <select name = "deletable-quality">
     <% @character_qualities.each do |characterquality| %>

@@ -151,10 +151,21 @@ post '/addquality/:character_id' do
   redirect "/characters/#{character_id}"
 end
 
-post '/deletequality/:character_id/:characterquality_id' do
+# post '/deletequality/:character_id/:characterquality_id' do
 
-  Characterquality.destroy(params[:characterquality_id])
+#   Characterquality.destroy(params[:characterquality_id])
 
+#   redirect "/characters/#{params[:character_id]}"
+# end
+
+post '/delete-quality/:character_id' do
+  binding.pry
+  character_qualities_of_current_character = Character.find(params[:character_id]).characterqualities
+  quality_to_delete_id = Quality.find_by(name: params["deletable-quality"]).id
+
+  character_quality_to_destroy = character_qualities_of_current_character.find_by(quality_id: quality_to_delete_id)
+
+  character_quality_to_destroy.destroy
   redirect "/characters/#{params[:character_id]}"
 end
 
