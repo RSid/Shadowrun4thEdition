@@ -143,10 +143,6 @@ Quality select:
 
   <li><%= "#{connection.name}: #{connection.description} Loyalty: #{connection.loyalty}/ Connection: #{connection.connection}" %></li>
 
-    <form action= <%= "/deleteconnection/#{@character.id}/#{connection.id}" %> method="post">
-      <input class="delete-button" type="submit"  value="Delete"/>
-    </form>
-
   <% end %>
 </ul>
 
@@ -168,6 +164,16 @@ Quality select:
       <input class="submit-button" type="submit"  value="Submit"/>
     </form>
 </div>
+
+<form action= <%= "/delete-connection/#{@character.id}" %> method = 'post' >
+Connection select:
+  <select name = "deletable-connection">
+    <% @connections.each do |characterconnection| %>
+      <option><%= Connection.find(characterconnection.id).name%></option>
+    <% end %>
+  </select>
+  <input class="delete-button" type="submit"  value="Delete"/>
+</form>
 
 <div id="character-deletion">
   <form action= <%= "/delete/#{@character.id}" %> method="post">

@@ -151,13 +151,6 @@ post '/addquality/:character_id' do
   redirect "/characters/#{character_id}"
 end
 
-# post '/deletequality/:character_id/:characterquality_id' do
-
-#   Characterquality.destroy(params[:characterquality_id])
-
-#   redirect "/characters/#{params[:character_id]}"
-# end
-
 post '/delete-quality/:character_id' do
   binding.pry
   character_qualities_of_current_character = Character.find(params[:character_id]).characterqualities
@@ -182,9 +175,9 @@ post '/addconnection/:character_id' do
   redirect "/characters/#{character_id}"
 end
 
-post '/deleteconnection/:character_id/:connection_id' do
+post '/delete-connection/:character_id' do
 
-  Connection.destroy(params[:connection_id])
+  Connection.find_by(name: params["deletable-connection"]).destroy
 
   redirect "/characters/#{params[:character_id]}"
 end
