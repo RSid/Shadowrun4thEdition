@@ -74,7 +74,7 @@
   </div>
 
 <form action= <%= "/delete-skill/#{@character.id}" %> method = 'post' >
-Home of the future deletion dropdown menu:
+Skill select:
   <select name = "deletable-skill">
     <% @character_skills.each do |characterskill| %>
       <option><%= Skill.find(characterskill.skill_id).name%></option>
@@ -114,6 +114,16 @@ Home of the future deletion dropdown menu:
       <input  class="submit-button" type="submit"  value="Submit"/>
     </form>
 </div>
+
+<form action= <%= "/delete-skill/#{@character.id}" %> method = 'post' >
+Quality select:
+  <select name = "deletable-quality">
+    <% @character_qualities.each do |characterquality| %>
+      <option><%= Quality.find(characterquality.quality_id).name%></option>
+    <% end %>
+  </select>
+  <input class="delete-button" type="submit"  value="Delete"/>
+</form>
 
 <h3><a name = "gear">Gear: </h3>
 

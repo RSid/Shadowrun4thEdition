@@ -120,13 +120,6 @@ post '/addskill/:character_id' do
   redirect "/characters/#{character_id}"
 end
 
-post '/deleteskill/:character_id/:characterskill_id' do
-  binding.pry
-  CharacterSkill.destroy(params[:characterskill_id])
-
-  redirect "/characters/#{params[:character_id]}"
-end
-
 post '/delete-skill/:character_id' do
   character_skills_of_current_character = Character.find(params[:character_id]).character_skills
   skill_to_delete_id = Skill.find_by(name: params["deletable-skill"]).id
