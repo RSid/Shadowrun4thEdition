@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Character</title>
+  <script language="javascript" type="text/javascript" src="/jquery.1.11.1.js"></script>
+  <script language="javascript" type="text/javascript" src="/skills_dynamic_forms.js"></script>
   <link rel="stylesheet" href="/sr4.css" />
 </head>
 <body>
@@ -123,14 +125,15 @@ Quality select:
 
 <h3><a name = "gear">Gear: </h3>
 
-<form>
-  <select>
-    <option>Weapons</option>
-    <option>Armour</option>
-    <option>Vehicles</option>
-    <option>General</option>
+<form id="gear-type">
+  Pick type of gear to add:
+  <select name = "PickGear">
+    <option value = '1'> Weapons </option>
+    <option value = '2'> Armour </option>
+    <option value = '3'> Vehicles </option>
+    <option value = '4'> General </option>
   </select>
-  Coming Soon.
+  <input class="gear-type-submit" type="submit"  value="Submit"/>
 </form>
 
 
