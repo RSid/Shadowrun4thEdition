@@ -125,6 +125,21 @@ Quality select:
 
 <h3><a name = "gear">Gear: </h3>
 
+<h3><a name = "weapons">Weapons: </h3>
+
+<ul>
+  <% @character_weapons.each do |characterweapon| %>
+    <% weapon_info = Weapon.find(characterweapon.weapon_id) %>
+
+    <li><%= "#{weapon_info.name}: #{weapon_info.description} Damage: #{weapon_info.damage} #{weapon_info.damage_type} Armor piercing: #{weapon_info.armor_piercing} Rating: #{characterweapon.rating} Concealability modifier: #{weapon_info.concealability} Legality: #{weapon_info.legality}" %></li>
+
+    <% if weapon_info.ammo != "" %>
+      <p><%= "Ammo: #{weapon_info.ammo}, Mode: #{weapon_info.mode}, Recoil: #{weapon_info.recoil}" %></p>
+    <% end %>
+
+  <% end %>
+</ul>
+
 <form id="gear-type">
   Add:
   <select id = "PickGear">
