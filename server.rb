@@ -37,18 +37,15 @@ end
 get '/' do
 
   if signed_in?
-    @users_characters = User.find(session[:user_id]).characters.includes(:skill, :quality)
+    @users_characters = User.find(session[:user_id]).characters
   end
 
   erb :index
 end
 
 get '/characters/:character_id' do
-  @character = Character.find(params[:character_id])
-  @character_skills = @character.character_skills
-  @character_qualities = @character.characterqualities
-  @connections = @character.connections
-  @character_weapons = @character.character_weapons
+
+  @character = Character.includes(:connections, character_skills: :skill, characterqualities: :quality, character_weapons: :weapon).where(id: params[:character_id])[0]
 
   erb :character
 end
@@ -201,13 +198,15 @@ post "/addweapon/:character_id" do
   binding.pry
   if Weapon.find_by(name: weapon_name) != nil
     weapon_id = Weapon.find_by(name: weapon_name).id
+    binding.pry
 
     CharacterWeapon.create(character_id: character_id,weapon_id: weapon_id, rating: weapon_rating)
   else
+
     Weapon.create(name: weapon_name, damage: weapon_damage, damage_type: weapon_damage_type, melee: weapon_melee,
         description: weapon_description, concealability: weapon_concealability, armor_piercing: weapon_ap, mode: weapon_mode,
         recoil: weapon_recoil, ammo: weapon_ammo, legality: weapon_legality)
-
+    binding.pry
     weapon_id = Weapon.find_by(name: weapon_name).id
 
     CharacterWeapon.create(character_id: character_id,weapon_id: weapon_id)

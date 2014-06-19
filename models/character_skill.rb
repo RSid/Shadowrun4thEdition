@@ -1,6 +1,8 @@
 class CharacterSkill < ActiveRecord::Base
-  belongs_to :character
-  belongs_to :skills
+  belongs_to :character,
+    inverse_of: :character_skills
+  belongs_to :skill,
+    inverse_of: :character_skills
 
   validates :character_id, presence: true
   validates :skill_id, presence: true

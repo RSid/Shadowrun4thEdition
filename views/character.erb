@@ -51,9 +51,9 @@
 
 <h3><a name="skills">Skills: </h3>
 <ul>
-  <% @character_skills.each do |characterskill| %>
+  <% @character.character_skills.each do |characterskill| %>
 
-    <li><%= "#{Skill.find(characterskill.skill_id).name}, Rating: #{characterskill.rating}, Specialization: #{characterskill.specialization}" %></li>
+    <li><%= "#{characterskill.skill.name}, Rating: #{characterskill.rating}, Specialization: #{characterskill.specialization}" %></li>
 
   <% end %>
 </ul>
@@ -78,8 +78,8 @@
 <form action= <%= "/delete-skill/#{@character.id}" %> method = 'post' >
 Skill select:
   <select name = "deletable-skill">
-    <% @character_skills.each do |characterskill| %>
-      <option><%= Skill.find(characterskill.skill_id).name%></option>
+    <% @character.character_skills.each do |characterskill| %>
+      <option><%= characterskill.skill.name %></option>
     <% end %>
   </select>
   <input class="delete-button" type="submit"  value="Delete"/>
@@ -87,9 +87,9 @@ Skill select:
 
 <h3><a name = "qualities">Qualities: </h3>
 <ul>
-  <% @character_qualities.each do |characterquality| %>
+  <% @character.characterqualities.each do |characterquality| %>
 
-    <li><%= "#{Quality.find(characterquality.quality_id).name}: #{Quality.find(characterquality.quality_id).description} Rating: #{characterquality.affect_rating} #{Quality.find(characterquality.quality_id).affected_stat} " %></li>
+    <li><%= "#{characterquality.quality.name}: #{characterquality.quality.description} Rating: #{characterquality.affect_rating} #{characterquality.quality.affected_stat} " %></li>
 
   <% end %>
 </ul>
@@ -116,8 +116,8 @@ Skill select:
 <form action= <%= "/delete-quality/#{@character.id}" %> method = 'post' >
 Quality select:
   <select name = "deletable-quality">
-    <% @character_qualities.each do |characterquality| %>
-      <option><%= Quality.find(characterquality.quality_id).name%></option>
+    <% @character.characterqualities.each do |characterquality| %>
+      <option><%= characterquality.quality.name%></option>
     <% end %>
   </select>
   <input class="delete-button" type="submit"  value="Delete"/>
@@ -128,13 +128,12 @@ Quality select:
 <h3><a name = "weapons">Weapons: </h3>
 
 <ul>
-  <% @character_weapons.each do |characterweapon| %>
-    <% weapon_info = Weapon.find(characterweapon.weapon_id) %>
+  <% @character.character_weapons.each do |characterweapon| %>
 
-    <li><%= "#{weapon_info.name}: #{weapon_info.description} Damage: #{weapon_info.damage} #{weapon_info.damage_type} Armor piercing: #{weapon_info.armor_piercing} Rating: #{characterweapon.rating} Concealability modifier: #{weapon_info.concealability} Legality: #{weapon_info.legality}" %></li>
+    <li><%= "#{characterweapon.weapon.name}: #{characterweapon.weapon.description} Damage: #{characterweapon.weapon.damage} #{characterweapon.weapon.damage_type} Armor piercing: #{characterweapon.weapon.armor_piercing} Rating: #{characterweapon.rating} Concealability modifier: #{characterweapon.weapon.concealability} Legality: #{characterweapon.weapon.legality}" %></li>
 
-    <% if weapon_info.ammo != "" %>
-      <p><%= "Ammo: #{weapon_info.ammo}, Mode: #{weapon_info.mode}, Recoil: #{weapon_info.recoil}" %></p>
+    <% if @character.character_weapons.first.weapon.ammo != "" %>
+      <p><%= "Ammo: #{characterweapon.weapon.ammo}, Mode: #{wcharacterweapon.weapon.mode}, Recoil: #{characterweapon.weapon.recoil}" %></p>
     <% end %>
 
   <% end %>
@@ -206,7 +205,7 @@ Quality select:
   <h3><a name = "connections">Connections: </h3>
 
 <ul>
-  <% @connections.each do |connection|%>
+  <% @character.connections.each do |connection|%>
 
   <li><%= "#{connection.name}: #{connection.description} Loyalty: #{connection.loyalty}/ Connection: #{connection.connection}" %></li>
 
@@ -235,8 +234,8 @@ Quality select:
 <form action= <%= "/delete-connection/#{@character.id}" %> method = 'post' >
 Connection select:
   <select name = "deletable-connection">
-    <% @connections.each do |characterconnection| %>
-      <option><%= Connection.find(characterconnection.id).name%></option>
+    <% @character.connections.each do |connection| %>
+      <option><%= connection.name%></option>
     <% end %>
   </select>
   <input class="delete-button" type="submit"  value="Delete"/>

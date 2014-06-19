@@ -3,7 +3,8 @@ class Character < ActiveRecord::Base
   belongs_to :user
 
   has_many :character_skills, dependent: :destroy
-  has_many :skills, through: :character_skills
+  has_many :skills,
+    through: :character_skills
 
   has_many :characterqualities, dependent: :destroy
   has_many :qualities, through: :characterqualities

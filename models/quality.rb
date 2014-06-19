@@ -1,5 +1,5 @@
 class Quality < ActiveRecord::Base
-  has_many :character_qualities
+  has_many :characterqualities
   has_many :characters, through: :character_qualities
 
 
