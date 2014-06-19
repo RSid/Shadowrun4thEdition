@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140619182509) do
+ActiveRecord::Schema.define(version: 20140619182942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 20140619182509) do
     t.string  "damage_type",    null: false
     t.boolean "melee",          null: false
     t.string  "concealability"
-    t.integer "armor_piercing"
+    t.string  "armor_piercing"
     t.string  "mode"
     t.string  "recoil"
     t.string  "ammo"

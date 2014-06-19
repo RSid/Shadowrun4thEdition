@@ -128,14 +128,15 @@ Quality select:
 <h3><a name = "weapons">Weapons: </h3>
 
 <ul>
-  <% @character.character_weapons.each do |characterweapon| %>
+  <% if @character.character_weapons[0] != nil %>
+    <% @character.character_weapons.each do |characterweapon| %>
 
-    <li><%= "#{characterweapon.weapon.name}: #{characterweapon.weapon.description} Damage: #{characterweapon.weapon.damage} #{characterweapon.weapon.damage_type} Armor piercing: #{characterweapon.weapon.armor_piercing} Rating: #{characterweapon.rating} Concealability modifier: #{characterweapon.weapon.concealability} Legality: #{characterweapon.weapon.legality}" %></li>
+      <li><%= "#{characterweapon.weapon.name}: #{characterweapon.weapon.description} Damage: #{characterweapon.weapon.damage} #{characterweapon.weapon.damage_type} Armor piercing: #{characterweapon.weapon.armor_piercing} Rating: #{characterweapon.rating} Concealability modifier: #{characterweapon.weapon.concealability} Legality: #{characterweapon.weapon.legality}" %></li>
 
-    <% if @character.character_weapons.first.weapon.ammo != "" %>
-      <p><%= "Ammo: #{characterweapon.weapon.ammo}, Mode: #{wcharacterweapon.weapon.mode}, Recoil: #{characterweapon.weapon.recoil}" %></p>
+      <% if @character.character_weapons.first.weapon.ammo != "" %>
+        <p><%= "Ammo: #{characterweapon.weapon.ammo}, Mode: #{wcharacterweapon.weapon.mode}, Recoil: #{characterweapon.weapon.recoil}" %></p>
+      <% end %>
     <% end %>
-
   <% end %>
 </ul>
 
@@ -197,9 +198,19 @@ Quality select:
 </div>
 
 <div id = 'under-constructon'>
-  <p>Still under construction.</p>
+  <p><em>Still under construction.</em></p>
 </div>
 
+
+<form action= <%= "/delete-weapon/#{@character.id}" %> method = 'post' >
+Weapon select:
+  <select name = "deletable-weapon">
+    <% @character.weapons.each do |weapon| %>
+      <option><%=weapon.name%></option>
+    <% end %>
+  </select>
+  <input class="delete-button" type="submit"  value="Delete"/>
+</form>
 
 
   <h3><a name = "connections">Connections: </h3>

@@ -46,7 +46,7 @@ end
 get '/characters/:character_id' do
 
   @character = Character.includes(:connections, character_skills: :skill, characterqualities: :quality, character_weapons: :weapon).where(id: params[:character_id])[0]
-
+  binding.pry
   erb :character
 end
 
@@ -148,7 +148,6 @@ post '/addquality/:character_id' do
 end
 
 post '/delete-quality/:character_id' do
-  binding.pry
   character_qualities_of_current_character = Character.find(params[:character_id]).characterqualities
   quality_to_delete_id = Quality.find_by(name: params["deletable-quality"]).id
 
@@ -195,14 +194,11 @@ post "/addweapon/:character_id" do
   weapon_legality = params['weapon-legality']
   weapon_description = params['weapon-description']
 
-  binding.pry
   if Weapon.find_by(name: weapon_name) != nil
     weapon_id = Weapon.find_by(name: weapon_name).id
-    binding.pry
 
     CharacterWeapon.create(character_id: character_id,weapon_id: weapon_id, rating: weapon_rating)
   else
-
     Weapon.create(name: weapon_name, damage: weapon_damage, damage_type: weapon_damage_type, melee: weapon_melee,
         description: weapon_description, concealability: weapon_concealability, armor_piercing: weapon_ap, mode: weapon_mode,
         recoil: weapon_recoil, ammo: weapon_ammo, legality: weapon_legality)
@@ -213,8 +209,18 @@ post "/addweapon/:character_id" do
 
   end
 
-
   redirect "/characters/#{character_id}"
+end
+
+post '/delete-weapon/:character_id' do
+
+  character_weapons_of_current_character = Character.find(params[:character_id]).character_weapons
+  weapon_to_delete_id = Weapon.find_by(name: params["deletable-weapon"]).id
+
+  character_weapon_to_destroy = character_weapons_of_current_character.find_by(weapon_id: weapon_to_delete_id)
+
+  character_weapon_to_destroy.destroy
+  redirect "/characters/#{params[:character_id]}"
 end
 
 
