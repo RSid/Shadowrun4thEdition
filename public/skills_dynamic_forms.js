@@ -1,11 +1,19 @@
 $( document ).ready(function() {
-  $('#gear-type').change(function(e) {
-    debugger
-    if ( $('form select[name=PickGear] option:selected').val()==1 ) {
-      alert('working!');
-      console.log('victory');
+  $('#weapons-input').hide();
+
+  $('#PickGear').change(function() {
+
+    var optionValue = $('#PickGear option:selected').val();
+
+    if ( optionValue!=1 ) {
+
+      $('#weapons-input').hide();
+      $('#under-constructon').show();
+
     } else {
-      console.log('at least something happened');
+
+      $('#weapons-input').show();
+      $('#under-constructon').show();
     }
   });
 });
