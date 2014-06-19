@@ -46,7 +46,7 @@ end
 get '/characters/:character_id' do
 
   @character = Character.includes(:connections, character_skills: :skill, characterqualities: :quality, character_weapons: :weapon).where(id: params[:character_id])[0]
-  binding.pry
+
   erb :character
 end
 

@@ -46,6 +46,7 @@
 <li><%= "Nuyen: #{@character.nuyen}" %></li>
 <li><%= "Essence: #{@character.essence}" %></li>
 <li><%= "Magic/Resonance: #{@character.magic}" %></li>
+<li><%= "Bio: #{@character.bio}" %></li>
 </ul>
 
 
@@ -125,7 +126,7 @@ Quality select:
 
 <h3><a name = "gear">Gear: </h3>
 
-<h3><a name = "weapons">Weapons: </h3>
+<h3><a name = "weapons">&nbsp;Weapons: </h3>
 
 <ul>
   <% if @character.character_weapons[0] != nil %>
@@ -140,63 +141,64 @@ Quality select:
   <% end %>
 </ul>
 
-<form id="gear-type">
-  Add:
-  <select id = "PickGear">
-    <option value = '0'> Gear type </option>
-    <option value = '1'> Weapons </option>
-    <option value = '2'> Armour </option>
-    <option value = '3'> Vehicles </option>
-    <option value = '4'> General </option>
-  </select>
-  <!-- <input class="gear-type-submit" type="submit"  value="Submit"/> Form appears due to jquery w/o needing to submit, but not sure if this will cause problems when I try to add things to DB, not having information about type to pass to controller-->
-</form>
-
-<div id = "weapons-input">
-  <form action= <%= "/addweapon/#{@character.id}" %> method="post">
-    <label for="weapon-name">Name: </label>
-    <input type="text" name="weapon-name" id="weapon-name" />
-
-    <label for="weapon-description">Description: </label>
-    <input type="text" name="weapon-description" id="weapon-description" />
-
-    <label for="weapon-damage">Damage: </label>
-    <input type="text" name="weapon-damage" id="weapon-damage" />
-
-    <label for="weapon-damage-type">Damage type: </label>
-    <input type="text" name="weapon-damage-type" id="weapon-damage-type" />
-
-    <label for="weapon-rating">Rating, if applicable: </label>
-    <input type="text" name="weapon-rating" id="weapon-rating" />
-
-    <label for="weapon-ap">Armor piercing: </label>
-    <input type="text" name="weapon-ap" id="weapon-ap" />
-
-    <label for="weapon-concealability">Concealability modifier: </label>
-    <input type="text" name="weapon-concealability" id="weapon-concealability" />
-
-    <label for="weapon-mode">Mode, if applicable: </label>
-    <input type="text" name="weapon-mode" id="weapon-mode" />
-
-    <label for="weapon-recoil">Recoil, if applicable: </label>
-    <input type="text" name="weapon-recoil" id="weapon-recoil" />
-
-    <label for="weapon-ammo">Ammo type, if applicable: </label>
-    <input type="text" name="weapon-ammo" id="weapon-ammo" />
-
-    <label for="weapon-legality">Legality: </label>
-    <input type="text" name="weapon-legality" id="weapon-legality" />
-
-    <label for="melee">Melee weapon? </label>
-    <select id = "melee" name = "melee">
-      <option value = 'true'> Yes </option>
-      <option value = 'false'> No </option>
+<div class = "editing-characters">
+  <form id="gear-type">
+    Add:
+    <select id = "PickGear">
+      <option value = '0'> Gear type </option>
+      <option value = '1'> Weapons </option>
+      <option value = '2'> Armour </option>
+      <option value = '3'> Vehicles </option>
+      <option value = '4'> General </option>
     </select>
-
-    <input class="weapon-submit" type="submit"  value="Submit"/>
+    <!-- <input class="gear-type-submit" type="submit"  value="Submit"/> Form appears due to jquery w/o needing to submit, but not sure if this will cause problems when I try to add things to DB, not having information about type to pass to controller-->
   </form>
-</div>
 
+  <div id = "weapons-input">
+    <form action= <%= "/addweapon/#{@character.id}" %> method="post">
+      <label for="weapon-name">Name: </label>
+      <input type="text" name="weapon-name" id="weapon-name" />
+
+      <label for="weapon-description">Description: </label>
+      <input type="text" name="weapon-description" id="weapon-description" />
+
+      <label for="weapon-damage">Damage: </label>
+      <input type="text" name="weapon-damage" id="weapon-damage" />
+
+      <label for="weapon-damage-type">Damage type: </label>
+      <input type="text" name="weapon-damage-type" id="weapon-damage-type" />
+
+      <label for="weapon-rating">Rating, if applicable: </label>
+      <input type="text" name="weapon-rating" id="weapon-rating" />
+
+      <label for="weapon-ap">Armor piercing: </label>
+      <input type="text" name="weapon-ap" id="weapon-ap" />
+
+      <label for="weapon-concealability">Concealability modifier: </label>
+      <input type="text" name="weapon-concealability" id="weapon-concealability" />
+
+      <label for="weapon-mode">Mode, if applicable: </label>
+      <input type="text" name="weapon-mode" id="weapon-mode" />
+
+      <label for="weapon-recoil">Recoil, if applicable: </label>
+      <input type="text" name="weapon-recoil" id="weapon-recoil" />
+
+      <label for="weapon-ammo">Ammo type, if applicable: </label>
+      <input type="text" name="weapon-ammo" id="weapon-ammo" />
+
+      <label for="weapon-legality">Legality: </label>
+      <input type="text" name="weapon-legality" id="weapon-legality" />
+
+      <label for="melee">Melee weapon? </label>
+      <select id = "melee" name = "melee">
+        <option value = 'true'> Yes </option>
+        <option value = 'false'> No </option>
+      </select>
+
+      <input class="weapon-submit" type="submit"  value="Submit"/>
+    </form>
+  </div>
+</div>
 <div id = 'under-constructon'>
   <p><em>Still under construction.</em></p>
 </div>
