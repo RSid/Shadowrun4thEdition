@@ -138,9 +138,46 @@ Quality select:
 </form>
 
 <div id = "weapons-input">
-  <form >
+  <form action= <%= "/addweapon/#{@character.id}" %> method="post">
     <label for="weapon-name">Name: </label>
-      <input type="text" name="weapon-name" id="weapon-name" />
+    <input type="text" name="weapon-name" id="weapon-name" />
+
+    <label for="weapon-description">Description: </label>
+    <input type="text" name="weapon-description" id="weapon-description" />
+
+    <label for="weapon-damage">Damage: </label>
+    <input type="text" name="weapon-damage" id="weapon-damage" />
+
+    <label for="weapon-damage-type">Damage type: </label>
+    <input type="text" name="weapon-damage-type" id="weapon-damage-type" />
+
+    <label for="weapon-rating">Rating, if applicable: </label>
+    <input type="text" name="weapon-rating" id="weapon-rating" />
+
+    <label for="weapon-ap">Armor piercing: </label>
+    <input type="text" name="weapon-ap" id="weapon-ap" />
+
+    <label for="weapon-concealability">Concealability modifier: </label>
+    <input type="text" name="weapon-concealability" id="weapon-concealability" />
+
+    <label for="weapon-mode">Mode, if applicable: </label>
+    <input type="text" name="weapon-mode" id="weapon-mode" />
+
+    <label for="weapon-recoil">Recoil, if applicable: </label>
+    <input type="text" name="weapon-recoil" id="weapon-recoil" />
+
+    <label for="weapon-ammo">Ammo type, if applicable: </label>
+    <input type="text" name="weapon-ammo" id="weapon-ammo" />
+
+    <label for="weapon-legality">Legality: </label>
+    <input type="text" name="weapon-legality" id="weapon-legality" />
+
+    <label for="melee">Melee weapon? </label>
+    <select id = "melee" name = "melee">
+      <option value = 'true'> Yes </option>
+      <option value = 'false'> No </option>
+    </select>
+
     <input class="weapon-submit" type="submit"  value="Submit"/>
   </form>
 </div>

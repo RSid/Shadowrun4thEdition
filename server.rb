@@ -170,7 +170,8 @@ post '/addconnection/:character_id' do
   connection_loyalty = params['connectionloyalty']
   connection_connection = params['connection']
 
-  Connection.create(character_id: character_id, name: connection_name, description: connection_description,loyalty: connection_loyalty,connection: connection_connection)
+  Connection.create(character_id: character_id, name: connection_name, description: connection_description,
+    loyalty: connection_loyalty,connection: connection_connection)
 
   redirect "/characters/#{character_id}"
 end
@@ -182,6 +183,41 @@ post '/delete-connection/:character_id' do
   redirect "/characters/#{params[:character_id]}"
 end
 
+
+post "/addweapon/:character_id" do
+  character_id = params[:character_id]
+  weapon_name = params['weapon-name']
+  weapon_damage = params['weapon-damage']
+  weapon_damage_type = params['weapon-damage-type']
+  weapon_melee = params['melee']=='true' ? true : false
+  weapon_rating = params['weapon-rating']
+  weapon_ap = params['weapon-ap']
+  weapon_concealability = params['weapon-concealability']
+  weapon_mode = params['weapon-mode']
+  weapon_recoil = params['weapon-recoil']
+  weapon_ammo = params['weapon-ammo']
+  weapon_legality = params['weapon-legality']
+  weapon_description = params['weapon-description']
+
+
+  if Weapon.find_by(name: weapon_name) != nil
+    weapon_id = Weapon.find_by(name: weapon_name).id
+    binding.pry
+    CharacterWeapon.create(character_id: character_id,weapon_id: weapon_id)
+  else
+    Weapon.create(name: weapon_name, damage: weapon_damage, damage_type: weapon_damage_type, melee: weapon_melee,
+        description: weapon_description, concealability: weapon_concealability, armor_piercing: weapon_ap, mode: weapon_mode,
+        recoil: weapon_recoil, ammo: weapon_ammo, legality: weapon_legality)
+    binding.pry
+    weapon_id = Weapon.find_by(name: weapon_name).id
+
+    CharacterWeapon.create(character_id: character_id,weapon_id: weapon_id)
+
+  end
+
+
+  redirect "/characters/#{character_id}"
+end
 
 
 ##############
