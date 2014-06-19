@@ -1,13 +1,17 @@
 class Character < ActiveRecord::Base
+
   belongs_to :user
+
   has_many :character_skills, dependent: :destroy
   has_many :skills, through: :character_skills
+
   has_many :characterqualities, dependent: :destroy
   has_many :qualities, through: :characterqualities
+
   has_many :connections, dependent: :destroy
+
   has_many :character_weapons, dependent: :destroy
   has_many :weapons, through: :character_weapons
-
 
   belongs_to :metatype
 

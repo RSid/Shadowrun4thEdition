@@ -1,4 +1,3 @@
-
 require 'sinatra'
 require 'sinatra/activerecord'
 require 'sinatra/flash'
@@ -8,7 +7,6 @@ require 'shotgun'
 require 'pry'
 require 'pg'
 require 'rake'
-
 
 require_relative 'config/application.rb'
 #Requires everything in models folder
@@ -39,7 +37,7 @@ end
 get '/' do
 
   if signed_in?
-    @users_characters = User.find(session[:user_id]).characters
+    @users_characters = User.find(session[:user_id]).characters.includes(:skill, :quality)
   end
 
   erb :index
@@ -200,7 +198,7 @@ post "/addweapon/:character_id" do
   weapon_legality = params['weapon-legality']
   weapon_description = params['weapon-description']
 
-
+  binding.pry
   if Weapon.find_by(name: weapon_name) != nil
     weapon_id = Weapon.find_by(name: weapon_name).id
 
@@ -245,4 +243,6 @@ end
 get '/example_protected_page' do
   authenticate!
 end
+
+
 

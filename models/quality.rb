@@ -1,5 +1,6 @@
 class Quality < ActiveRecord::Base
-  belongs_to :character_qualities
+  has_many :character_qualities
+  has_many :characters, through: :character_qualities
 
 
   validates :name, presence: true

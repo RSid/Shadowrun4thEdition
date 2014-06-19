@@ -1,7 +1,6 @@
 class CharacterSkill < ActiveRecord::Base
-
   belongs_to :character
-  has_many :skills
+  belongs_to :skills
 
   validates :character_id, presence: true
   validates :skill_id, presence: true
