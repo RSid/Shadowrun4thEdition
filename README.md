@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/rsid/shadowrun4thedition.png?label=ready&title=Ready)](https://waffle.io/rsid/shadowrun4thedition)
 Shadowrun4thEdition
 ===================
 
