@@ -2,9 +2,6 @@ source 'https://rubygems.org'
 
 ruby '2.1.0'
 
-require 'coveralls'
-Coveralls.wear!
-
 gem 'sinatra'
 gem 'dotenv'
 gem 'omniauth'
