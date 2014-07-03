@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140619182942) do
+ActiveRecord::Schema.define(version: 20140616002222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,9 +24,9 @@ ActiveRecord::Schema.define(version: 20140619182942) do
   end
 
   create_table "character_weapons", force: true do |t|
-    t.string  "character_id", null: false
-    t.integer "rating"
+    t.integer "character_id", null: false
     t.integer "weapon_id",    null: false
+    t.integer "rating"
   end
 
   create_table "characterqualities", force: true do |t|
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20140619182942) do
     t.integer "willpower",         null: false
     t.integer "edge",              null: false
     t.integer "nuyen",             null: false
-    t.integer "essence",           null: false
+    t.float   "essence",           null: false
     t.integer "magic"
     t.integer "initiative_passes", null: false
     t.text    "bio"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20140619182942) do
     t.string  "description"
     t.integer "loyalty",      null: false
     t.integer "connection",   null: false
-    t.integer "character_id"
+    t.integer "character_id", null: false
   end
 
   create_table "metatypes", force: true do |t|

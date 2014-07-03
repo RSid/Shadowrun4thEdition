@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Character</title>
   <script language="javascript" type="text/javascript" src="/jquery.1.11.1.js"></script>
+  <script language="javascript" type="text/javascript" src="/app.js"></script>
   <script language="javascript" type="text/javascript" src="/skills_dynamic_forms.js"></script>
   <link rel="stylesheet" href="/sr4.css" />
 </head>
@@ -135,7 +136,7 @@ Quality select:
       <li><%= "#{characterweapon.weapon.name}: #{characterweapon.weapon.description} Damage: #{characterweapon.weapon.damage} #{characterweapon.weapon.damage_type} Armor piercing: #{characterweapon.weapon.armor_piercing} Rating: #{characterweapon.rating} Concealability modifier: #{characterweapon.weapon.concealability} Legality: #{characterweapon.weapon.legality}" %></li>
 
       <% if @character.character_weapons.first.weapon.ammo != "" %>
-        <p><%= "Ammo: #{characterweapon.weapon.ammo}, Mode: #{wcharacterweapon.weapon.mode}, Recoil: #{characterweapon.weapon.recoil}" %></p>
+        <p><%= "Ammo: #{characterweapon.weapon.ammo}, Mode: #{characterweapon.weapon.mode}, Recoil: #{characterweapon.weapon.recoil}" %></p>
       <% end %>
     <% end %>
   <% end %>

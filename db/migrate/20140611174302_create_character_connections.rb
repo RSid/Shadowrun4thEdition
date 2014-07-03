@@ -5,6 +5,7 @@ class CreateCharacterConnections < ActiveRecord::Migration
       table.string :description
       table.integer :loyalty, null: false
       table.integer :connection, null: false
+      table.integer :character_id, null: false
     end
   end
 end

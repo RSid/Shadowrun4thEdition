@@ -45,7 +45,9 @@ end
 
 get '/characters/:character_id' do
 
-  @character = Character.includes(:connections, character_skills: :skill, characterqualities: :quality, character_weapons: :weapon).where(id: params[:character_id])[0]
+  @character = Character.includes(:connections, character_skills: :skill,
+    characterqualities: :quality,
+    character_weapons: :weapon).where(id: params[:character_id])[0]
 
   erb :character
 end
@@ -248,6 +250,3 @@ end
 get '/example_protected_page' do
   authenticate!
 end
-
-
-

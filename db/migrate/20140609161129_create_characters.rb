@@ -15,10 +15,10 @@ class CreateCharacters < ActiveRecord::Migration
       table.integer :willpower, null: false
       table.integer :edge, null: false
       table.integer :nuyen, null: false
-      table.integer :essence, null: false
+      table.float :essence, null: false
       table.integer :magic
       table.integer :initiative_passes, null: false
-      table.string  :bio
+      table.text  :bio
 
     end
   end
