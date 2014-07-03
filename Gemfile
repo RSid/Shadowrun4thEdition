@@ -13,8 +13,14 @@ gem 'rake'
 gem 'sinatra-contrib'
 gem 'activemodel'
 
+gem 'coveralls', require: false
+
 group :development do
   gem 'shotgun'
   gem 'pry'
 end
 
+group :test do
+  gem 'rspec'
+  gem 'capybara'
+end
